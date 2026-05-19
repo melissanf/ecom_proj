@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $redirect = $_GET['redirect'] ?? '';
-            if ($redirect && str_starts_with($redirect, '/')) {
+            if (isInternalRedirect($redirect)) {
                 header('Location: ' . $redirect);
                 exit;
             }

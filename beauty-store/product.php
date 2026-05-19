@@ -29,27 +29,26 @@ if (!$product) {
 $pageTitle = $product['name'] . ' - Beauty Shop';
 $price = productPrice($product);
 $hasSale = $product['on_sale'] && $product['sale_price'];
+$images = [];
+
+if (!empty($product['image']) && $product['image'] !== 'placeholder.svg') {
+    $images[] = baseUrl('assets/images/' . $product['image']);
+}
+if (!empty($product['image2'])) {
+    $images[] = baseUrl('assets/images/' . $product['image2']);
+}
+if (!empty($product['image3'])) {
+    $images[] = baseUrl('assets/images/' . $product['image3']);
+}
+if (empty($images)) {
+    $images[] = baseUrl('assets/images/bottle1.png');
+}
 
 require __DIR__ . '/includes/header.php';
 ?>
 
 <article class="product-detail reveal">
     <div class="product-detail-visual reveal-left" style="background: transparent; padding: 0; display: flex; flex-direction: column; gap: 1.5rem;">
-        <?php 
-            $images = [];
-            if (!empty($product['image']) && $product['image'] !== 'placeholder.svg') {
-                $images[] = baseUrl('assets/images/' . $product['image']);
-            }
-            if (!empty($product['image2'])) {
-                $images[] = baseUrl('assets/images/' . $product['image2']);
-            }
-            if (!empty($product['image3'])) {
-                $images[] = baseUrl('assets/images/' . $product['image3']);
-            }
-            if (empty($images)) {
-                $images[] = baseUrl('assets/images/bottle1.png');
-            }
-        ?>
         <div style="background: #f8fafc; border-radius: var(--radius-xl); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; padding: 4rem;">
             <img id="main-product-image" src="<?= e($images[0]) ?>"
                  alt="<?= e($product['name']) ?>"
@@ -59,19 +58,11 @@ require __DIR__ . '/includes/header.php';
         <?php if (count($images) > 1): ?>
             <div class="thumbnail-gallery" style="display: flex; gap: 1rem; justify-content: center;">
                 <?php foreach ($images as $idx => $img): ?>
-                    <button type="button" class="thumb-btn" onclick="document.getElementById('main-product-image').src='<?= e($img) ?>'" style="background: none; border: 2px solid <?= $idx === 0 ? 'var(--text-main)' : 'transparent' ?>; border-radius: 12px; padding: 0.5rem; cursor: pointer; transition: var(--transition);">
+                    <button type="button" class="thumb-btn" data-image="<?= e($img) ?>" style="background: none; border: 2px solid <?= $idx === 0 ? 'var(--text-main)' : 'transparent' ?>; border-radius: 12px; padding: 0.5rem; cursor: pointer; transition: var(--transition);">
                         <img src="<?= e($img) ?>" alt="Thumbnail" style="width: 80px; height: 80px; object-fit: contain; border-radius: 8px; background: #f8fafc;">
                     </button>
                 <?php endforeach; ?>
             </div>
-            <script>
-                document.querySelectorAll('.thumb-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        document.querySelectorAll('.thumb-btn').forEach(b => b.style.borderColor = 'transparent');
-                        this.style.borderColor = 'var(--text-main)';
-                    });
-                });
-            </script>
         <?php endif; ?>
     </div>
     

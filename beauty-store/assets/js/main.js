@@ -63,31 +63,39 @@
     }
 
     function formatMoney(amount) {
-        return '$' + Number(amount).toFixed(2);
+        return Number(amount).toFixed(2) + ' DZD';
     }
 
     var header = document.querySelector('.site-header');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    var revealElements = document.querySelectorAll('.reveal');
-    var revealObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                revealObserver.unobserve(entry.target);
+    if (header) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
-    }, { threshold: 0.15 });
+    }
 
-    revealElements.forEach(function(el) {
-        revealObserver.observe(el);
-    });
+    var revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(function (el) {
+            revealObserver.observe(el);
+        });
+    } else {
+        revealElements.forEach(function (el) {
+            el.classList.add('active');
+        });
+    }
 
     var toggle = document.getElementById('mobileToggle');
     var nav = document.getElementById('mainNav');
@@ -96,6 +104,20 @@
             nav.classList.toggle('is-open');
         });
     }
+
+    document.querySelectorAll('.thumb-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var image = btn.getAttribute('data-image');
+            var mainImage = document.getElementById('main-product-image');
+            if (image && mainImage) {
+                mainImage.src = image;
+            }
+            document.querySelectorAll('.thumb-btn').forEach(function (item) {
+                item.style.borderColor = 'transparent';
+            });
+            btn.style.borderColor = 'var(--text-main)';
+        });
+    });
 
     document.querySelectorAll('.btn-add-cart').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -175,11 +197,7 @@
                         updateCartBadge(data.count);
                         var row = btn.closest('.cart-item');
                         if (row) row.remove();
-                        if (data.count === 0) {
-                            window.location.reload();
-                        } else {
-                            window.location.reload();
-                        }
+                        window.location.reload();
                     }
                 });
         });

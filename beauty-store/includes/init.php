@@ -61,7 +61,10 @@ function cartCount(): int
 function cartTotal(PDO $db): float
 {
     $cart = getCart();
-    if (empty($cart)) return 0;
+    if (empty($cart)) {
+        return 0.0;
+    }
+
     $ids = array_keys($cart);
     $placeholders = implode(',', array_fill(0, count($ids), '?'));
     $stmt = $db->prepare("SELECT id, price, sale_price, on_sale FROM products WHERE id IN ($placeholders)");
@@ -69,7 +72,10 @@ function cartTotal(PDO $db): float
     $products = $stmt->fetchAll(PDO::FETCH_UNIQUE);
     $total = 0;
     foreach ($cart as $id => $item) {
-        if (!isset($products[$id])) continue;
+        if (!isset($products[$id])) {
+            continue;
+        }
+
         $p = $products[$id];
         $price = ($p['on_sale'] && $p['sale_price']) ? (float)$p['sale_price'] : (float)$p['price'];
         $total += $price * $item['quantity'];
@@ -118,11 +124,32 @@ function clearRememberCookie(): void
     unset($_SESSION['remember_token'], $_SESSION['remember_email']);
 }
 
+function isInternalRedirect(string $target): bool
+{
+    if ($target === '' || $target[0] !== '/') {
+        return false;
+    }
+
+    if (isset($target[1]) && $target[1] === '/') {
+        return false;
+    }
+
+    return !preg_match('/[\r\n]/', $target);
+}
+
 function tryRememberLogin(PDO $db): void
 {
-    if (isLoggedIn()) return;
-    if (empty($_COOKIE['remember_user']) || empty($_COOKIE['remember_token'])) return;
-    if (empty($_SESSION['remember_token']) || $_COOKIE['remember_token'] !== $_SESSION['remember_token']) return;
+    if (isLoggedIn()) {
+        return;
+    }
+
+    if (empty($_COOKIE['remember_user']) || empty($_COOKIE['remember_token'])) {
+        return;
+    }
+
+    if (empty($_SESSION['remember_token']) || $_COOKIE['remember_token'] !== $_SESSION['remember_token']) {
+        return;
+    }
 
     $stmt = $db->prepare('SELECT id, name, email, role FROM users WHERE id = ?');
     $stmt->execute([(int)$_COOKIE['remember_user']]);

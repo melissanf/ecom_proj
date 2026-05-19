@@ -44,6 +44,8 @@ function runInstall($pdo, $dbName) {
         price DECIMAL(10,2) NOT NULL,
         sale_price DECIMAL(10,2) DEFAULT NULL,
         image VARCHAR(255) DEFAULT 'placeholder.svg',
+        image2 VARCHAR(255) DEFAULT NULL,
+        image3 VARCHAR(255) DEFAULT NULL,
         stock INT NOT NULL DEFAULT 100,
         on_sale TINYINT(1) NOT NULL DEFAULT 0,
         featured TINYINT(1) NOT NULL DEFAULT 0,
