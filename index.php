@@ -38,11 +38,6 @@ $essentials = $stmt->fetchAll();
     <div class="side-social">
         <span>Follow us — Fb. / Tw. / Inst.</span>
     </div>
-
-    <?php /* <div class="scroll-indicator">
-        <div class="mouse"></div>
-        <span>Scroll Down</span>
-    </div>*/ ?>
 </section>
 
 <?php if (!empty($saleProducts)): ?>

@@ -66,7 +66,6 @@
         return '$' + Number(amount).toFixed(2);
     }
 
-    /* Scroll Effects */
     var header = document.querySelector('.site-header');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -76,7 +75,6 @@
         }
     });
 
-    /* Reveal on Scroll */
     var revealElements = document.querySelectorAll('.reveal');
     var revealObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
@@ -91,7 +89,6 @@
         revealObserver.observe(el);
     });
 
-    /* Mobile nav */
     var toggle = document.getElementById('mobileToggle');
     var nav = document.getElementById('mainNav');
     if (toggle && nav) {
@@ -100,7 +97,6 @@
         });
     }
 
-    /* Add to cart buttons */
     document.querySelectorAll('.btn-add-cart').forEach(function (btn) {
         btn.addEventListener('click', function () {
             var id = btn.getAttribute('data-id');
@@ -123,7 +119,6 @@
         });
     });
 
-    /* Product detail form */
     var addForm = document.querySelector('.add-to-cart-form');
     if (addForm) {
         addForm.addEventListener('submit', function (e) {
@@ -151,7 +146,6 @@
         });
     }
 
-    /* Cart page */
     document.querySelectorAll('.cart-qty-input').forEach(function (input) {
         input.addEventListener('change', function () {
             var id = input.getAttribute('data-id');

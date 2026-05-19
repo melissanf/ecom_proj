@@ -37,16 +37,14 @@ if ($id) {
         redirect('admin/products.php');
     }
     $product = $row;
-    // ensure keys exist even on older rows
     $product['image2'] = $product['image2'] ?? '';
     $product['image3'] = $product['image3'] ?? '';
 }
 
-/* ── helper: handle one image slot ─────────────────────────────── */
 function handleImageSlot(string $field, string $current, array &$errors): string
 {
     if (empty($_FILES[$field]['name'])) {
-        return $current; // keep existing
+        return $current;
     }
     $file     = $_FILES[$field];
     $allowed  = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
@@ -75,7 +73,6 @@ function handleImageSlot(string $field, string $current, array &$errors): string
         return $current;
     }
 
-    // delete old file if it's in our products folder
     if ($current && strpos($current, 'products/') === 0) {
         $old = __DIR__ . '/../assets/images/' . $current;
         if (file_exists($old)) @unlink($old);
@@ -101,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($product['description'] === '') $errors[] = 'Description is required.';
     if (!is_numeric($product['price']))  $errors[] = 'Valid price is required.';
 
-    // Process all three image slots
     $img1 = handleImageSlot('image',  (string)($product['image']  ?? ''), $errors);
     $img2 = handleImageSlot('image2', (string)($product['image2'] ?? ''), $errors);
     $img3 = handleImageSlot('image3', (string)($product['image3'] ?? ''), $errors);
@@ -135,7 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-/* ── tiny helper for preview HTML ─────────────────────────────── */
 function imgPreviewBlock(string $field, string $label, string $current, int $n): string
 {
     $src = $current ? e(baseUrl('assets/images/' . $current)) : '';
@@ -185,7 +180,6 @@ HTML;
         <label for="description">Product Description</label>
         <textarea id="description" name="description" rows="8" placeholder="Tell the story of this product..." required><?= e($product['description']) ?></textarea>
 
-        <!-- ── Product Images (up to 3) ── -->
         <label style="margin-bottom:1.2rem; display:block;">Product Images <span style="font-weight:500; text-transform:none; letter-spacing:0; opacity:.6;">(up to 3 — first is the main image)</span></label>
         <div style="display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:2rem; padding:2rem; background:#f8fafc; border-radius:var(--radius-md);">
             <?= imgPreviewBlock('image',  'Main Image',  (string)($product['image']  ?? ''), 1) ?>

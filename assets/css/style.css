@@ -69,7 +69,6 @@ body.admin-body {
     flex-direction: column;
 }
 
-/* Header Styling */
 .site-header {
     padding: 2rem 6rem;
     position: sticky;
@@ -138,7 +137,6 @@ body.admin-body {
     gap: 2rem;
 }
 
-/* Universal Button System */
 .btn-pill,
 .btn-explore,
 .btn-dark,
@@ -218,7 +216,6 @@ body.admin-body {
     justify-content: center;
 }
 
-/* Hero Section */
 .hero {
     min-height: 100vh;
     padding: 0 6rem;
@@ -299,7 +296,6 @@ body.admin-body {
     }
 }
 
-/* Floating overlapping bottles in hero */
 .bottles-duo {
     position: relative;
     width: 550px;
@@ -316,7 +312,6 @@ body.admin-body {
     object-fit: contain;
 }
 
-/* Bottle 1 — leaning left, sits behind */
 .bottle-img--back {
     left: 0;
     transform: rotate(-14deg) translateY(0px);
@@ -326,7 +321,6 @@ body.admin-body {
     transform-origin: bottom center;
 }
 
-/* Bottle 2 — leaning right, sits in front */
 .bottle-img--front {
     right: 0;
     transform: rotate(12deg) translateY(0px);
@@ -374,7 +368,6 @@ body.admin-body {
     opacity: 0.3;
 }
 
-/* Sections */
 .section {
     padding: 10rem 6rem;
 }
@@ -408,7 +401,6 @@ body.admin-body {
     padding-left: 1rem;
 }
 
-/* Product Cards */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -504,7 +496,6 @@ body.admin-body {
     background: var(--accent-hover);
 }
 
-/* Cart & Shopping Bag Refinement */
 .cart-layout {
     display: grid;
     grid-template-columns: 1fr 400px;
@@ -591,7 +582,6 @@ body.admin-body {
     margin-bottom: 2rem;
 }
 
-/* Authentication Pages (Login/Signup) */
 .auth-page {
     display: flex;
     justify-content: center;
@@ -657,7 +647,6 @@ body.admin-body {
     text-underline-offset: 4px;
 }
 
-/* Admin Table Styling */
 .admin-table-wrap {
     background: var(--white);
     border-radius: var(--radius-lg);
@@ -699,7 +688,6 @@ body.admin-body {
     background: #fafbfc;
 }
 
-/* Page Headers Restoration */
 .page-header {
     padding: 12rem 6rem 4rem;
     text-align: center;
@@ -720,7 +708,6 @@ body.admin-body {
     letter-spacing: 0.1em;
 }
 
-/* Shop Page */
 .shop-layout {
     display: grid;
     grid-template-columns: 350px 1fr;
@@ -771,7 +758,6 @@ body.admin-body {
     outline: none;
 }
 
-/* Product Detail */
 .product-detail {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -807,7 +793,6 @@ body.admin-body {
     display: block;
 }
 
-/* Admin Sidebar */
 .admin-sidebar {
     background: #000000;
     width: 320px;
@@ -877,7 +862,6 @@ body.admin-body {
     background: rgba(255, 71, 87, 0.1);
 }
 
-/* Admin Content */
 .admin-wrapper {
     display: flex;
 }
@@ -888,7 +872,6 @@ body.admin-body {
     background: #f8fafc;
 }
 
-/* Admin Toolbar */
 .admin-toolbar {
     display: flex;
     justify-content: space-between;
@@ -901,7 +884,6 @@ body.admin-body {
     font-weight: 900;
 }
 
-/* Admin Dashboard Stats */
 .admin-stats {
     display: flex;
     flex-wrap: wrap;
@@ -965,7 +947,6 @@ body.admin-body {
     margin: 0;
 }
 
-/* Checkboxes in forms */
 .checkbox-label {
     display: flex;
     align-items: center;
@@ -989,7 +970,6 @@ body.admin-body {
     align-items: center;
 }
 
-/* Checkout Layout */
 .checkout-layout {
     display: grid;
     grid-template-columns: 1fr 400px;
@@ -1003,7 +983,6 @@ body.admin-body {
     margin-bottom: 3rem;
 }
 
-/* Content Pages (About) */
 .content-page {
     max-width: 800px;
     margin: 0 auto;
@@ -1024,7 +1003,6 @@ body.admin-body {
     margin-bottom: 3rem;
 }
 
-/* Contact Page */
 .contact-page {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -1039,7 +1017,6 @@ body.admin-body {
     margin-bottom: 1rem;
 }
 
-/* Shared Form Styles for Checkout & Contact */
 .checkout-form label,
 .contact-form label {
     font-size: 0.8rem;
@@ -1074,7 +1051,6 @@ body.admin-body {
     outline: none;
 }
 
-/* Checkout Success */
 .checkout-success {
     max-width: 600px;
     margin: 4rem auto;
@@ -1096,7 +1072,6 @@ body.admin-body {
     margin-bottom: 3rem;
 }
 
-/* Account Page */
 .account-section {
     max-width: 1000px;
     margin: 0 auto;
@@ -1110,7 +1085,6 @@ body.admin-body {
     text-transform: uppercase;
 }
 
-/* Order Details Grid */
 .order-info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1181,7 +1155,6 @@ body.admin-body {
     color: var(--text-main);
 }
 
-/* Admin Forms */
 .admin-form {
     background: var(--white);
     padding: 6rem;
@@ -1223,7 +1196,6 @@ body.admin-body {
     box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.03);
 }
 
-/* Status Badges */
 .status-badge {
     padding: 0.6rem 2rem;
     border-radius: 999px;
@@ -1258,7 +1230,6 @@ body.admin-body {
     color: #d63031;
 }
 
-/* Site Footer */
 .site-footer {
     background: var(--text-main);
     color: var(--white);
@@ -1308,7 +1279,6 @@ body.admin-body {
     transform: translateX(8px);
 }
 
-/* Animation Classes */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1325,7 +1295,6 @@ body.admin-body {
     animation: fadeInUp 1s forwards;
 }
 
-/* Mobile */
 @media (max-width: 1200px) {
     .hero-title {
         font-size: 4rem;

@@ -93,7 +93,6 @@ function productImageUrl(array $product): string
     if ($img !== '' && $img !== 'placeholder.svg') {
         return baseUrl('assets/images/' . $img);
     }
-    // fallback to hero bottle
     return baseUrl('assets/images/bottle1.png');
 }
 
@@ -140,5 +139,4 @@ try {
     $db = getDB();
     tryRememberLogin($db);
 } catch (PDOException $e) {
-    // DB not ready — pages will show setup hint
 }
