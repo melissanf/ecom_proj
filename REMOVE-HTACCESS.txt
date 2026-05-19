@@ -1,0 +1,11 @@
+If you see "Internal Server Error" (500):
+
+Delete this file if it exists in your project folder:
+
+  .htaccess
+
+Path example: C:\xampp\htdocs\beauty-store\.htaccess
+
+Then restart Apache in XAMPP and open:
+
+  http://localhost/beauty-store/install.php
