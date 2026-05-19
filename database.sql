@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2026 at 03:18 AM
+-- Generation Time: May 19, 2026 at 08:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,20 +60,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `customer_name`, `customer_email`, `shipping_address`, `total`, `status`, `created_at`) VALUES
-(1, NULL, 'Fadi Ayad', 'ayadfadi10@gmail.com', '04 rue announa', 9.90, 'pending', '2026-05-15 17:17:37'),
-(2, NULL, 'Fadi Ayad', 'ayadfadi10@gmail.com', '04 rue announa', 10.80, 'processing', '2026-05-15 17:31:55'),
-(3, NULL, 'Fadi Ayad', 'ayadfadi10@gmail.com', '04 rue announa', 27.90, 'pending', '2026-05-15 23:26:22'),
-(4, NULL, 'Fadi Ayad', 'ayadfadi10@gmail.com', '04 rue announa', 7.80, 'delivered', '2026-05-15 23:28:55'),
-(5, 2, 'TESTING', 'test@beauty.com', 'test', 11.90, 'cancelled', '2026-05-15 23:32:04'),
-(6, NULL, 'Fadi Ayad', 'ayadfadi10@gmail.com', '04 rue announa', 27.80, 'shipped', '2026-05-15 23:44:02'),
-(7, NULL, 'Fadi Ayad', 'ayadfadi10@gmail.com', '04 rue announa', 3600.00, 'pending', '2026-05-16 00:13:13'),
-(8, 1, 'Admin', 'admin@beauty.com', '04 rue announa', 3000.00, 'pending', '2026-05-16 00:17:19');
-
 -- --------------------------------------------------------
 
 --
@@ -88,21 +74,6 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL,
   `unit_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_name`, `quantity`, `unit_price`) VALUES
-(1, 1, 1, 'Niacinamide 10 + Zinc 1', 1, 9.90),
-(2, 2, 6, 'Glycolic Acid 7 Toning Solution', 1, 10.80),
-(3, 3, 1, 'Niacinamide 10 + Zinc 1', 1, 9.90),
-(5, 4, 3, 'Caffeine Solution 5 + EGCG', 1, 7.80),
-(6, 5, 2, 'Hyaluronic Acid 2 + B5', 1, 11.90),
-(7, 6, 2, 'Hyaluronic Acid 2 + B5', 1, 11.90),
-(8, 6, 7, 'Mineral UV Filters SPF 30', 1, 15.90),
-(9, 7, 13, 'Natural Moisturizing Factors + HA', 3, 1200.00),
-(10, 8, 17, 'test24', 2, 1500.00);
 
 -- --------------------------------------------------------
 
@@ -132,14 +103,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `description`, `price`, `sale_price`, `image`, `image2`, `image3`, `stock`, `on_sale`, `featured`, `created_at`) VALUES
-(1, 1, 'Niacinamide 10 + Zinc 1', 'niacinamide-10-zinc-1', 'High-strength vitamin and mineral blemish formula.', 12.90, 9.90, 'placeholder.svg', NULL, NULL, 98, 1, 1, '2026-05-15 16:35:46'),
+(1, 1, 'Niacinamide 10 + Zinc 1', 'niacinamide-10-zinc-1', 'High-strength vitamin and mineral blemish formula.', 12.90, 9.90, 'products/prod_6a0ca4b11ec858.69980463.webp', 'products/prod_6a0ca3c25c4330.21907118.webp', '', 98, 1, 1, '2026-05-15 16:35:46'),
 (2, 1, 'Hyaluronic Acid 2 + B5', 'hyaluronic-acid-2-b5', 'Hydrating formula with hyaluronic acid for plumped skin.', 14.90, 11.90, 'products/prod_6a07a1e868d3e9.66345926.png', NULL, NULL, 98, 1, 1, '2026-05-15 16:35:46'),
 (3, 1, 'Caffeine Solution 5 + EGCG', 'caffeine-solution-5-egcg', 'Reduces eye contour pigmentation and puffiness.', 9.80, 7.80, 'placeholder.svg', NULL, NULL, 99, 1, 1, '2026-05-15 16:35:46'),
-(6, 3, 'Glycolic Acid 7 Toning Solution', 'glycolic-acid-7-toning', 'Exfoliating toner for improved radiance.', 10.80, NULL, 'placeholder.svg', '', '', 99, 1, 1, '2026-05-15 16:35:46'),
-(7, 4, 'Mineral UV Filters SPF 30', 'mineral-uv-spf30', 'Broad-spectrum mineral sunscreen for daily protection.', 18.90, 15.90, 'placeholder.svg', NULL, NULL, 99, 1, 0, '2026-05-15 16:35:46'),
-(12, 2, 'Moisturizer', 'moisturizer', 'Moisturizer', 2500.00, 1900.00, 'products/prod_6a07b2cb030521.49558743.png', 'products/prod_6a07b2cb032722.38242227.png', '', 100, 1, 1, '2026-05-15 23:56:59'),
-(13, 2, 'Natural Moisturizing Factors + HA', 'natural-moisturizing-factors-ha', 'Natural Moisturizing Factors + HA', 1600.00, 1200.00, 'products/prod_6a07b335391db7.14395801.png', 'products/prod_6a07b335393640.05454607.png', '', 97, 1, 1, '2026-05-15 23:58:45'),
-(17, 4, 'test24', 'test24', 'test', 1900.00, 1500.00, 'products/prod_6a07b7662907c1.76440460.png', 'products/prod_6a07b766292aa0.29627144.png', 'products/prod_6a07b766294415.12862150.png', 98, 1, 1, '2026-05-16 00:16:38');
+(6, 3, 'Glycolic Acid 7 Toning Solution', 'glycolic-acid-7-toning', 'Exfoliating toner for improved radiance.', 2300.00, 1900.00, 'products/prod_6a0ca6b71f1365.46879442.webp', 'products/prod_6a0ca6b71f3811.07763100.webp', '', 98, 1, 1, '2026-05-15 16:35:46'),
+(7, 4, 'Mineral UV Filters SPF 30', 'mineral-uv-spf30', 'Broad-spectrum mineral sunscreen for daily protection.', 18.90, 15.90, 'products/prod_6a0ca508ce2277.66769112.webp', 'products/prod_6a0ca508ce40b2.86094006.webp', '', 99, 1, 1, '2026-05-15 16:35:46'),
+(13, 2, 'Natural Moisturizing Factors + HA', 'natural-moisturizing-factors-ha', 'Natural Moisturizing Factors + HA', 1600.00, 1200.00, 'products/prod_6a0ca2d384bbf8.05894603.webp', 'products/prod_6a0ca2d384f1c7.80753556.webp', 'products/prod_6a0ca2d3852188.93985082.webp', 97, 1, 1, '2026-05-15 23:58:45'),
+(19, 2, 'Amino Acids Lip Balm', 'amino-acids-lip-balm', 'A multi-use moisturizing balm designed to hydrate the lips, elbows and cuticles.', 3500.00, 2899.97, 'products/prod_6a0ca72a7bed63.11798260.webp', 'products/prod_6a0ca72a7c0ed0.66657209.webp', '', 100, 1, 1, '2026-05-19 18:08:42');
 
 -- --------------------------------------------------------
 
@@ -161,9 +131,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(1, 'Admin', 'admin@beauty.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '2026-05-15 16:35:46'),
-(2, 'TESTING', 'test@beauty.com', '$2y$10$ibvSD/I6Lu1V9wQNosLeX.PEGNX0KNZYG.mSoDByd8Te956DJHVK.', 'customer', '2026-05-15 23:30:51'),
-(3, 'Fadi Ayad', 'ayadfadi10@gmail.com', '$2y$10$MTuPrV1D88dk.BK1iw33n./4cPBXyk.b7m0wDbwX27R3Vhi8nJOTe', 'customer', '2026-05-15 23:45:41');
+(1, 'Admin', 'admin@beauty.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '2026-05-15 16:35:46');
 
 --
 -- Indexes for dumped tables
@@ -220,25 +188,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

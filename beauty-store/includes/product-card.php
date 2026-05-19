@@ -5,7 +5,7 @@ $hasSale = $product['on_sale'] && $product['sale_price'];
 ?>
 <article class="product-card">
     <a href="<?= e(baseUrl('product.php?slug=' . urlencode($product['slug']))) ?>" style="text-decoration: none;">
-        <div class="product-image-wrap">
+        <div class="product-image-wrap" Style="padding-bottom: 3rem;">
             <div class="product-image product-bottle" data-variant="<?= (int)$product['id'] % 4 ?>">
                 <img src="<?= e(productImageUrl($product)) ?>" alt="<?= e($product['name']) ?>" style="width: 130%;">
             </div>
